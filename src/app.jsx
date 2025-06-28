@@ -44,7 +44,7 @@ function App() {
   const [playerMonsterId, setPlayerMonsterId] = useState(1);
   const [battleCount, setBattleCount] = useState(0);
   const [result, setResult] = useState(null);
-  const [enemyInfo, setEnemyInfo] = useState(null);
+  const [lastBattle, setLastBattle] = useState(null);
 
   const unlockedMonsters = monsters.filter(m => m.unlocked);
 
@@ -59,7 +59,12 @@ function App() {
     else if (winner === "enemy") message = "Perdiste";
     else message = "Empate";
     setResult(message);
-    setEnemyInfo({ monster: enemyMonster, move: enemyMove });
+    setLastBattle({
+      playerMonster,
+      playerMove: move,
+      enemyMonster,
+      enemyMove
+    });
 
     const newCount = battleCount + 1;
     setBattleCount(newCount);
@@ -109,18 +114,28 @@ function App() {
         ))}
       </div>
 
-      {enemyInfo && (
+      {lastBattle && (
         <div style={{ marginTop: "20px" }}>
           <h3>
-            Enemigo: {enemyInfo.monster.name} ({enemyInfo.monster.rarity})
+            Tu monstruo: {lastBattle.playerMonster.name} ({lastBattle.playerMonster.rarity})
           </h3>
           <img
-            src={enemyInfo.monster.image}
-            alt={enemyInfo.monster.name}
+            src={lastBattle.playerMonster.image}
+            alt={lastBattle.playerMonster.name}
             width="60"
             style={{ display: "block", marginBottom: "10px" }}
           />
-          <p>Movimiento del enemigo: {enemyInfo.move}</p>
+          <p>Tu movimiento: {lastBattle.playerMove}</p>
+          <h3>
+            Enemigo: {lastBattle.enemyMonster.name} ({lastBattle.enemyMonster.rarity})
+          </h3>
+          <img
+            src={lastBattle.enemyMonster.image}
+            alt={lastBattle.enemyMonster.name}
+            width="60"
+            style={{ display: "block", marginBottom: "10px" }}
+          />
+          <p>Movimiento del enemigo: {lastBattle.enemyMove}</p>
         </div>
       )}
 
