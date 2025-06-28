@@ -7,10 +7,54 @@
   <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
   <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <style>
-    body { font-family: Arial, sans-serif; margin: 20px; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+    #root {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
     label { margin-right: 10px; }
-    button { margin-right: 5px; }
+    button {
+      margin-right: 5px;
+      padding: 6px 12px;
+      border: none;
+      color: #fff;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover { filter: brightness(1.1); }
+
+    .move-piedra { background-color: #795548; }
+    .move-papel { background-color: #2196F3; }
+    .move-tijera { background-color: #E53935; }
+    .legend-box {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      margin-right: 4px;
+      vertical-align: middle;
+      border-radius: 2px;
+    }
+    h1, h2 { text-align: center; }
     .monster-list { list-style: none; padding: 0; }
+    .monster-list li {
+      background: #eee;
+      margin-bottom: 4px;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+    .monster-list img {
+      vertical-align: middle;
+      margin-right: 4px;
+    }
   </style>
 </head>
 <body>
