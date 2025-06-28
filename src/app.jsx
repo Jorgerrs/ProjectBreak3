@@ -159,6 +159,7 @@ function App() {
   const [lastBattle, setLastBattle] = useState(null);
 
   const unlockedMonsters = monsters.filter(m => m.unlocked);
+  const playerMonster = monsters.find(m => m.id === playerMonsterId);
 
   function handleMove(move) {
     const playerMonster = monsters.find(m => m.id === playerMonsterId);
@@ -229,7 +230,7 @@ function App() {
         <h2>Elige tu movimiento</h2>
         {choices.map(choice => (
           <button key={choice} onClick={() => handleMove(choice)}>
-            {choice}
+            {playerMonster.abilities[choice]}
           </button>
         ))}
       </div>
