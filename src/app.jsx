@@ -8,16 +8,16 @@ const rarities = {
 };
 
 const initialMonsters = [
-  { id: 1, name: "Bicho", rarity: "common", unlocked: true },
-  { id: 2, name: "Topo", rarity: "common", unlocked: true },
-  { id: 3, name: "Rata", rarity: "common", unlocked: true },
-  { id: 4, name: "Lobo", rarity: "common", unlocked: false },
-  { id: 5, name: "Orco", rarity: "poco comun", unlocked: false },
-  { id: 6, name: "Golem", rarity: "poco comun", unlocked: false },
-  { id: 7, name: "Harpia", rarity: "poco comun", unlocked: false },
-  { id: 8, name: "Dragon", rarity: "epico", unlocked: false },
-  { id: 9, name: "Kraken", rarity: "epico", unlocked: false },
-  { id: 10, name: "Fenix", rarity: "legendario", unlocked: false }
+  { id: 1, name: "Bicho", rarity: "common", unlocked: true, image: "images/bicho.svg" },
+  { id: 2, name: "Topo", rarity: "common", unlocked: true, image: "images/topo.svg" },
+  { id: 3, name: "Rata", rarity: "common", unlocked: true, image: "images/rata.svg" },
+  { id: 4, name: "Lobo", rarity: "common", unlocked: false, image: "images/lobo.svg" },
+  { id: 5, name: "Orco", rarity: "poco comun", unlocked: false, image: "images/orco.svg" },
+  { id: 6, name: "Golem", rarity: "poco comun", unlocked: false, image: "images/golem.svg" },
+  { id: 7, name: "Harpia", rarity: "poco comun", unlocked: false, image: "images/harpia.svg" },
+  { id: 8, name: "Dragon", rarity: "epico", unlocked: false, image: "images/dragon.svg" },
+  { id: 9, name: "Kraken", rarity: "epico", unlocked: false, image: "images/kraken.svg" },
+  { id: 10, name: "Fenix", rarity: "legendario", unlocked: false, image: "images/fenix.svg" }
 ];
 
 const choices = ["piedra", "papel", "tijera"];
@@ -89,6 +89,12 @@ function App() {
               checked={playerMonsterId === m.id}
               onChange={() => setPlayerMonsterId(m.id)}
             />
+            <img
+              src={m.image}
+              alt={m.name}
+              width="40"
+              style={{ verticalAlign: "middle", marginRight: "4px" }}
+            />
             {m.name} ({m.rarity})
           </label>
         ))}
@@ -108,6 +114,12 @@ function App() {
           <h3>
             Enemigo: {enemyInfo.monster.name} ({enemyInfo.monster.rarity})
           </h3>
+          <img
+            src={enemyInfo.monster.image}
+            alt={enemyInfo.monster.name}
+            width="60"
+            style={{ display: "block", marginBottom: "10px" }}
+          />
           <p>Movimiento del enemigo: {enemyInfo.move}</p>
         </div>
       )}
@@ -118,13 +130,29 @@ function App() {
         <h2>Monstruos desbloqueados</h2>
         <ul className="monster-list">
           {monsters.filter(m => m.unlocked).map(m => (
-            <li key={m.id}>{m.name} ({m.rarity})</li>
+            <li key={m.id}>
+              <img
+                src={m.image}
+                alt={m.name}
+                width="30"
+                style={{ verticalAlign: "middle", marginRight: "4px" }}
+              />
+              {m.name} ({m.rarity})
+            </li>
           ))}
         </ul>
         <h2>Bloqueados</h2>
         <ul className="monster-list">
           {monsters.filter(m => !m.unlocked).map(m => (
-            <li key={m.id}>{m.name} ({m.rarity})</li>
+            <li key={m.id}>
+              <img
+                src={m.image}
+                alt={m.name}
+                width="30"
+                style={{ verticalAlign: "middle", marginRight: "4px" }}
+              />
+              {m.name} ({m.rarity})
+            </li>
           ))}
         </ul>
       </div>
